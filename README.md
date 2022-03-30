@@ -12,3 +12,4 @@
 
 
 Create your desired categories by going to the admin page  -->  localhost:8000/admin
+
