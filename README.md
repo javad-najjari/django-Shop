@@ -1,7 +1,7 @@
 # django-shop
 
 
-1- Download the project and unzip the file 
+1- Download the project and unzip the file \n
 2- Create your virtual environment inside the project and activate it
   linux -->  source {Virtual environment name }/bin/activate       example: source .venv/bin/activate
   windows  -->  .\{Virtual environment name }\Scripts\activate     example: ./.venv/Scripts/activate
