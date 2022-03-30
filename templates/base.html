@@ -1,0 +1,238 @@
+{% load static %}
+{% load base_tags %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- Basic -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>فروشگاه آنلاین</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% block more %} {% endblock %}
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'store/images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'store/images/apple-touch-icon.png' %}">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'store/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'store/css/custom.css' %}">
+    <!-- Font CSS -->
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/48a70550bb.js" crossorigin="anonymous"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i> جواد نجاری هستم برنامه نویس وب - این سایتو با جنگو ساختم
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> لطفا من رو در شبکه های اجتماعی دنبال کنید
+                                </li>
+                                <li>
+                                    <i class="fab fa-opencart"></i> جیمیل : javad.programmer100@gmail.com
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->
+
+    <!-- Start Main Top -->
+    <header class="main-header">
+        <!-- Start Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                    <img src="{% static 'store/images/logo.png' %}" class="logo" alt="">
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+
+                        {% if request.resolver_match.url_name != 'login' and request.resolver_match.url_name != 'register' %}
+                            {% search_box %}
+                        {% endif %}
+
+                        {% hover_navbar request 'خانه' 'store' 'home' %}
+
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item {% if request.resolver_match.url_name == 'user_card' %} active {% endif %}"><a class="nav-link" href="{% url 'orders:user_card' %}">سبد خرید</a></li>
+                        {% endif %}
+
+                        {% hover_navbar request 'درباره ی من' 'store' 'about' %}
+                        {% hover_navbar request 'کل محصولات' 'store' 'all' %}
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        {% if request.user.is_authenticated %}
+                            <li class="side-menu"><a href="{% url 'orders:user_card' %}">
+
+                            <i class="fa fa-shopping-bag"></i>
+                                <span class="badge">{{ user.orders.count }}</span>
+                            </a></li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:logout' %}">خروج <i class="fa fa-sign-out"></i>
+                            </a></li>
+                            
+                        {% else %}
+                            <li class="nav-item">
+                                {% if request.resolver_match.url_name == 'login' %}
+                                    <a class="nav-link" style="color: #d33b33;"
+                                    href="{% url 'accounts:login' %}" >ورود <i class="fa fa-sign-in"></i></a>
+                                {% else %}
+                                    <a class="nav-link"
+                                    href="{% url 'accounts:login' %}" >ورود <i class="fa fa-sign-in"></i></a>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <!-- End Atribute Navigation -->
+            </div>
+
+        </nav>
+        <!-- End Navigation -->
+    </header>
+    <!-- End Main Top -->
+
+    {% include 'includes/messages.html' %}
+
+    {% block content %} {% endblock %}
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4 class="rtl">درباره ی من</h4>
+                            <p class="rtl">
+                                به وب سایت من خوش اومدین<br>جواد نجاری هستم برنامه نویس سایت<br>این سایت رو با فریمورک 
+                                <a style="color: red;" href="https://www.djangoproject.com/">جنگو</a> ساختم<br>
+                                اگه پروژه داری یا اینکه به برنامه نویسی علاقه مندی<br><i class="fa fa-arrow-circle-down"></i>
+                                <i class="fa fa-arrow-circle-down"></i> پس منو دنبال کن
+                            </p>
+                            <ul>
+                                <li><a href="https://www.youtube.com/channel/UC-JfiaHfkNoeSSJGH1iSIww"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/javad--najjari/"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/javad_najjari.py/"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About me</h4>
+                            <p>
+                                Welcome to my website <br>
+                                I am Javad Najjari, a web developer <br>
+                                I created this site with the <a style="color:red;" href="https://www.djangoproject.com/">Django</a> framework <br>
+                                If you have a project or you are interested in programming , 
+                                So follow me <i class="fa fa-arrow-circle-down"></i> <i class="fa fa-arrow-circle-down"></i>
+                            </p>
+                            <ul>
+                                <li><a href="https://www.youtube.com/channel/UC-JfiaHfkNoeSSJGH1iSIww"><i class="fab fa-youtube" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/javad--najjari/"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="https://www.instagram.com/javad_najjari.py/"><i class="fab fa-instagram" aria-hidden="true"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Me &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ارتباط با من</h4>
+                            <ul>
+                                <li>
+                                    <p style="color: red;"><i class="fas fa-phone-square"></i>Phone: <a href="">0990 822 7202</a></p>
+                                </li>
+                                <li>
+                                    <p style="color: red;"><i class="fas fa-envelope"></i>Email: <a href="">javad.programmer100@gmail.com</a></p>
+                                </li>
+                                <li>
+                                    <p style="color: red;"><i class="fab fa-telegram"></i>Telegram: <a href="">@javad_py</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2018 ThewayShop Design By :
+            <a href="https://html.design/">html design</a></p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'store/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'store/js/popper.min.js' %}"></script>
+    <script src="{% static 'store/js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'store/js/jquery.superslides.min.js' %}"></script>
+    <script src="{% static 'store/js/bootstrap-select.js' %}"></script>
+    <script src="{% static 'store/js/inewsticker.js' %}"></script>
+    <script src="{% static 'store/js/bootsnav.js' %}."></script>
+    <script src="{% static 'store/js/images-loded.min.js' %}"></script>
+    <script src="{% static 'store/js/isotope.min.js' %}"></script>
+    <script src="{% static 'store/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'store/js/baguetteBox.min.js' %}"></script>
+    <script src="{% static 'store/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'store/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'store/js/custom.js' %}"></script>
+        
+
+</body>
+
+</html>

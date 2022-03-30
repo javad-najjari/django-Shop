@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+    <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-left">
+                <img src="{% static 'store/images/banner-01.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> My site</strong></h1>
+                            <p class="m-b-40">به وب سایت من خوش اومدین<br>برای شما ساعات خوشی را آرزومندم</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'store/images/banner-02.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> My site</strong></h1>
+                            <p class="m-b-40">به وب سایت من خوش اومدین<br>برای شما ساعات خوشی را آرزومندم</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-right">
+                <img src="{% static 'store/images/banner-03.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>Welcome To <br> My site</strong></h1>
+                            <p class="m-b-40">به وب سایت من خوش اومدین<br>برای شما ساعات خوشی را آرزومندم</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- End Slider -->
+
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <h1 style="text-align: center; color:red;">دسته بندی ها</h1> <br><br>
+        <div class="container">
+            <div class="row">
+                {% for cat in categoris %}
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <div class="shop-cat-box">
+                        <img style="height: 250px;" class="img-fluid" src="{{ cat.image.url }}" alt="" />
+                        <a class="btn hvr-hover" href="{% url 'store:list' cat.slug %}">{{ cat.title }}</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- End Categories -->
+    
+{% endblock %}

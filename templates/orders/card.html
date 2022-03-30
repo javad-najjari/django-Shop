@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<!-- Start Top Search -->
+<div class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 style="color: orange;">لیست سبد خرید شما</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active">سبد خرید</li>
+                    <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>تصویر</th>
+                                <th>نام محصول</th>
+                                <th>تعداد</th>
+                                <th>قیمت <small>(تومان)</small></th>
+                                <th>جزئیات</th>
+                                <th>حذف <small>(یکی یکی)</small></th>
+                                <th>حذف <small>(کامل)</small></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td class="thumbnail-img">
+                                    <a href="{% url 'store:detail' order.product.id %}">
+                                <img class="img-fluid" src="{{ order.product.photo.url }}" alt="" />
+                            </a>
+                                </td>
+                                <td class="name-pr">
+                                {{ order.product.title }}
+                                </td>
+                                <td class="name-pr">
+                                    {{ order.number }}
+                                </td>
+                                <td class="price-pr">
+                                    <p>{{ order.new_price }}</p>
+                                </td>
+                                <td class="quantity-box"><a href="{% url 'store:detail' order.product.id %}">جزئیات این {{ order.product.title }}</a></td>
+                                <td class="remove-pr">
+                                    <a href="{% url 'orders:remove_order' order.id 'False' %}">
+                                    <i class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                                <td class="remove-pr">
+                                    <a href="{% url 'orders:remove_order' order.id 'True' %}">
+                                    <i style="color: red;" class="fas fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr>
+                    <h3 class="btn btn-primary">مجموع : <h3 class="btn btn-success user-price">{{ request.user.total_price }} <small>تومان</small></h3></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

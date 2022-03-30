@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>درباره ی من</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'store:about' %}">درباره ی من</a></li>
+                    <li class="breadcrumb-item active">فروشگاه</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start About Page  -->
+<div class="about-box-main rtl">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="noo-sh-title">خلاصه ای در مورد <span>من (برنامه نویس‌  این سایت)</span></h2>
+                <p>
+                    جواد نجاری هستم متولد تیر ماه ۱۳۷۷ و در حال حاضر دانشجو - <br>
+                    برنامه نویس و طراح بک اند سایت . علاقه مند به حوزه ی کامپیوتر و برنامه نویسی -<br>
+                    این حرفه رو از ابتدای سال ۱۴۰۰ و با زبان پایتون شروع کردم - <br>
+                    نمونه کارهای من رو میتونید داخل <a style="color: blue;" href="https://www.linkedin.com/in/javad--najjari/">لینکدین</a> و <a style="color: blue;" href="https://github.com/javad-najjari">گیت هاب</a> خودم ببینید - <br>
+                    اگه به برنامه نویسی علاقه دارین میتونید چنل <a style="color: blue;" href="https://www.instagram.com/javad_najjari.py/">اینستا</a> و <a style="color: blue;" href="https://www.youtube.com/channel/UC-JfiaHfkNoeSSJGH1iSIww">یوتیوب</a> من رو دنبال کنید - <br>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="banner-frame"> <img class="img-thumbnail img-fluid" src="{% static 'store/images/programming.jpg' %}">
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<!-- End About Page -->
+{% endblock %}

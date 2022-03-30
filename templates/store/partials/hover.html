@@ -1,0 +1,11 @@
+
+
+<li class="nav-item 
+
+    {% if request.resolver_match.url_name == link %}
+        active
+    {% endif %}">
+
+    <a class="nav-link" href="{% url link_url %}">{{ title }} {% if more_class %}{{ more_class }}{% endif %}</a>
+</li>
+

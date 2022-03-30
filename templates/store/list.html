@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<!-- Start Top Search -->
+<div class="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 style="color: orange;">لیست کالاهای این دسته بندی</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item active">{{ title }}</li>
+                    <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End All Title Box -->
+
+<!-- Start Wishlist  -->
+<div class="wishlist-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>تصویر</th>
+                                <th>نام محصول</th>
+                                <th>قیمت <small>(تومان)</small></th>
+                                <th>جزئیات</th>
+                                <th>اضافه کردن</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for pro in products %}
+                            <tr>
+                                <td class="thumbnail-img">
+                                    <a href="{% url 'store:detail' pro.id %}">
+                                <img class="img-fluid" src="{{ pro.photo.url }}" alt="" />
+                            </a>
+                                </td>
+                                <td class="name-pr">
+                                {{ pro.title }}
+                                </td>
+                                <td class="price-pr">
+                                    <p>{{ pro.show_price }}</p>
+                                </td>
+                                <td class="quantity-box"><a href="{% url 'store:detail' pro.id %}">جزئیات این {{ pro.title }}</a></td>
+                                <td class="add-pr">
+                                    <form action="{% url 'orders:add_order' pro.id %}" method="POST">
+                                        {% csrf_token %}
+                                        {{ form|crispy }}
+                                        <input class="btn btn-primary" type="submit" value="افزودن به سبد خرید">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
