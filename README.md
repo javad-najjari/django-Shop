@@ -11,4 +11,7 @@
 6- Go to the opposite address: 127.0.0.1:8000  or  localhost:8000                                                  
                                                                                                                 
                                                                                                                
-Create your desired categories by going to the admin page  -->  localhost:8000/admin
+Create your desired categories by going to the admin page  -->  localhost:8000/admin                              
+
+I used the following template for this site:                                                                       
+https://www.free-css.com/free-css-templates/page246/thewayshop
