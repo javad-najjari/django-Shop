@@ -4,7 +4,7 @@
 1- Download the project and unzip the file                                                                        
 2- Create your virtual environment inside the project and activate it                                             
     linux -->  source {Virtual environment name }/bin/activate       example: source .venv/bin/activate             
-    windows  -->  {Virtual environment name }\Scripts\activate     example: ./.venv/Scripts/activate              
+    windows  -->  {Virtual environment name }\Scripts\activate     example: .\.venv\Scripts\activate              
 3- Execute the opposite command: python manage.py migrate                                                        
 4- Execute the opposite command: python manage.py createsuperuser, and create your own super user                 
 5- Execute the opposite command: python manage.py runserver                                                      
